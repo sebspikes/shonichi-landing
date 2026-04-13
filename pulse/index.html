@@ -286,19 +286,21 @@
         </div>
 
         <div class="field-group">
-          <label class="field-label" for="name">Name <span class="optional">(optional)</span></label>
+          <label class="field-label" for="name">Name</label>
           <input
             class="field-input"
             type="text"
             id="name"
             name="name"
             placeholder="Your name"
+            required
             autocomplete="name"
           >
+          <div class="field-error" id="name_error"></div>
         </div>
 
         <div class="field-group">
-          <label class="field-label" for="listing_count">Number of listings <span class="optional">(optional)</span></label>
+          <label class="field-label" for="listing_count">Number of listings</label>
           <input
             class="field-input"
             type="number"
@@ -306,8 +308,10 @@
             name="listing_count"
             placeholder="e.g. 5"
             min="1"
+            required
             inputmode="numeric"
           >
+          <div class="field-error" id="listing_count_error"></div>
         </div>
 
         <div class="form-error-banner" id="formErrorBanner">
@@ -346,8 +350,12 @@
 
       var listingUrlInput = document.getElementById('listing_url');
       var emailInput = document.getElementById('email');
+      var nameInput = document.getElementById('name');
+      var listingCountInput = document.getElementById('listing_count');
       var listingUrlError = document.getElementById('listing_url_error');
       var emailError = document.getElementById('email_error');
+      var nameError = document.getElementById('name_error');
+      var listingCountError = document.getElementById('listing_count_error');
 
       var AIRBNB_PATTERN = /airbnb\.(com|co\.uk)\/rooms\//i;
       var EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -355,8 +363,12 @@
       function clearErrors() {
         listingUrlInput.classList.remove('error');
         emailInput.classList.remove('error');
+        nameInput.classList.remove('error');
+        listingCountInput.classList.remove('error');
         listingUrlError.textContent = '';
         emailError.textContent = '';
+        nameError.textContent = '';
+        listingCountError.textContent = '';
         errorBanner.classList.remove('visible');
       }
 
@@ -373,6 +385,18 @@
         if (!EMAIL_PATTERN.test(emailInput.value.trim())) {
           emailInput.classList.add('error');
           emailError.textContent = 'Please enter a valid email address';
+          valid = false;
+        }
+
+        if (!nameInput.value.trim()) {
+          nameInput.classList.add('error');
+          nameError.textContent = 'Please enter your name';
+          valid = false;
+        }
+
+        if (!listingCountInput.value || parseInt(listingCountInput.value, 10) < 1) {
+          listingCountInput.classList.add('error');
+          listingCountError.textContent = 'Please enter your number of listings';
           valid = false;
         }
 
@@ -393,16 +417,9 @@
         var payload = {
           listing_url: listingUrlInput.value.trim(),
           email: emailInput.value.trim(),
-          name: document.getElementById('name').value.trim() || undefined,
-          listing_count: document.getElementById('listing_count').value
-            ? parseInt(document.getElementById('listing_count').value, 10)
-            : undefined
+          name: nameInput.value.trim(),
+          listing_count: parseInt(listingCountInput.value, 10)
         };
-
-        // Remove undefined keys
-        Object.keys(payload).forEach(function (k) {
-          if (payload[k] === undefined) delete payload[k];
-        });
 
         setLoading(true);
 
@@ -423,13 +440,16 @@
       });
 
       // Clear field errors on input
-      listingUrlInput.addEventListener('input', function () {
-        listingUrlInput.classList.remove('error');
-        listingUrlError.textContent = '';
-      });
-      emailInput.addEventListener('input', function () {
-        emailInput.classList.remove('error');
-        emailError.textContent = '';
+      [
+        [listingUrlInput, listingUrlError],
+        [emailInput, emailError],
+        [nameInput, nameError],
+        [listingCountInput, listingCountError]
+      ].forEach(function (pair) {
+        pair[0].addEventListener('input', function () {
+          pair[0].classList.remove('error');
+          pair[1].textContent = '';
+        });
       });
     })();
   </script>
