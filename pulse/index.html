@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Listing Health Check | Shonichi.ai</title>
+  <meta name="description" content="Get a free Airbnb listing health check. We analyse your reviews, photos, amenities, and competitive positioning.">
+  <link rel="icon" type="image/png" href="data:image/png;base64,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">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0E1215;
+      --surface: #151A21;
+      --surface-raised: #1A2029;
+      --bone: #F4F1EA;
+      --sky: #4FA3D1;
+      --text: #F4F1EA;
+      --text-muted: #7D838B;
+      --border: rgba(244,241,234,0.07);
+      --border-strong: rgba(244,241,234,0.12);
+      --green: #6ee7b7;
+      --red: #f87171;
+      --font-body: 'DM Sans', -apple-system, sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ---- LOGO ---- */
+    .logo-bar {
+      width: 100%;
+      padding: 1.5rem 1.5rem 0;
+    }
+    .logo-bar a { display: inline-block; }
+    .logo-bar img {
+      height: 28px;
+      width: auto;
+      opacity: 0.9;
+    }
+
+    /* ---- MAIN ---- */
+    .pulse-container {
+      width: 100%;
+      max-width: 480px;
+      padding: 2rem 1.5rem 3rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* ---- HERO COPY ---- */
+    .pulse-headline {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      color: var(--bone);
+    }
+    .pulse-subline {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 2rem;
+    }
+
+    /* ---- FORM ---- */
+    .pulse-form { display: flex; flex-direction: column; gap: 1rem; }
+
+    .field-group { display: flex; flex-direction: column; gap: 0.375rem; }
+
+    .field-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .field-label .optional {
+      font-weight: 400;
+      text-transform: none;
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+
+    .field-input {
+      background: var(--surface);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      transition: border-color 200ms ease, box-shadow 200ms ease;
+      outline: none;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+    .field-input::placeholder { color: var(--text-muted); opacity: 0.5; }
+    .field-input:focus {
+      border-color: var(--sky);
+      box-shadow: 0 0 0 3px rgba(79,163,209,0.15);
+    }
+    .field-input.error {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(248,113,113,0.12);
+    }
+
+    .field-error {
+      font-size: 0.8125rem;
+      color: var(--red);
+      min-height: 1.25rem;
+      line-height: 1.25rem;
+    }
+
+    /* ---- SUBMIT ---- */
+    .submit-btn {
+      margin-top: 0.5rem;
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+      background: var(--sky);
+      color: var(--bg);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 200ms ease, transform 150ms ease, opacity 200ms ease;
+      letter-spacing: -0.01em;
+    }
+    .submit-btn:hover { background: #68b5dc; transform: translateY(-1px); }
+    .submit-btn:active { transform: translateY(0); }
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-footer {
+      margin-top: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    /* ---- SUCCESS STATE ---- */
+    .success-card {
+      display: none;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+    }
+    .success-card.visible { display: block; }
+
+    .success-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 1.25rem;
+      border-radius: 50%;
+      background: rgba(110,231,183,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .success-icon svg { width: 24px; height: 24px; color: var(--green); }
+
+    .success-headline {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--bone);
+    }
+    .success-body {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ---- INLINE ERROR ---- */
+    .form-error-banner {
+      display: none;
+      padding: 0.75rem 1rem;
+      background: rgba(248,113,113,0.08);
+      border: 1px solid rgba(248,113,113,0.2);
+      border-radius: 8px;
+      font-size: 0.875rem;
+      color: var(--red);
+      text-align: center;
+    }
+    .form-error-banner.visible { display: block; }
+
+    /* ---- SPINNER ---- */
+    .spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(14,18,21,0.3);
+      border-top-color: var(--bg);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      vertical-align: middle;
+      margin-right: 0.5rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ---- REDUCED MOTION ---- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+
+    /* ---- DESKTOP ---- */
+    @media (min-width: 640px) {
+      .logo-bar { padding: 2rem 2.5rem 0; }
+      .pulse-container { padding: 3rem 2rem 4rem; }
+      .pulse-headline { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo-bar">
+    <a href="/">
+      <img src="/assets/shonichi-logo.png" alt="Shonichi" class="logo-img">
+    </a>
+  </div>
+
+  <main class="pulse-container">
+    <!-- FORM VIEW -->
+    <div id="formView">
+      <h1 class="pulse-headline">Get a free listing health check</h1>
+      <p class="pulse-subline">Enter your Airbnb listing URL and we'll analyse your reviews, photos, amenities, and competitive positioning.</p>
+
+      <form id="pulseForm" class="pulse-form" novalidate>
+        <div class="field-group">
+          <label class="field-label" for="listing_url">Airbnb listing URL</label>
+          <input
+            class="field-input"
+            type="url"
+            id="listing_url"
+            name="listing_url"
+            placeholder="https://www.airbnb.com/rooms/1234567"
+            required
+            autocomplete="url"
+          >
+          <div class="field-error" id="listing_url_error"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="email">Email</label>
+          <input
+            class="field-input"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            required
+            autocomplete="email"
+          >
+          <div class="field-error" id="email_error"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="name">Name <span class="optional">(optional)</span></label>
+          <input
+            class="field-input"
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your name"
+            autocomplete="name"
+          >
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="listing_count">Number of listings <span class="optional">(optional)</span></label>
+          <input
+            class="field-input"
+            type="number"
+            id="listing_count"
+            name="listing_count"
+            placeholder="e.g. 5"
+            min="1"
+            inputmode="numeric"
+          >
+        </div>
+
+        <div class="form-error-banner" id="formErrorBanner">
+          Something went wrong. Please try again.
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          Run My Analysis
+        </button>
+
+        <p class="form-footer">Results delivered to your inbox within 5 minutes</p>
+      </form>
+    </div>
+
+    <!-- SUCCESS VIEW -->
+    <div class="success-card" id="successView">
+      <div class="success-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+        </svg>
+      </div>
+      <h2 class="success-headline">You're all set</h2>
+      <p class="success-body">Check your inbox — your report will arrive within 5 minutes.</p>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var WEBHOOK_URL = '/api/pulse';
+
+      var form = document.getElementById('pulseForm');
+      var formView = document.getElementById('formView');
+      var successView = document.getElementById('successView');
+      var submitBtn = document.getElementById('submitBtn');
+      var errorBanner = document.getElementById('formErrorBanner');
+
+      var listingUrlInput = document.getElementById('listing_url');
+      var emailInput = document.getElementById('email');
+      var listingUrlError = document.getElementById('listing_url_error');
+      var emailError = document.getElementById('email_error');
+
+      var AIRBNB_PATTERN = /airbnb\.(com|co\.uk)\/rooms\//i;
+      var EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      function clearErrors() {
+        listingUrlInput.classList.remove('error');
+        emailInput.classList.remove('error');
+        listingUrlError.textContent = '';
+        emailError.textContent = '';
+        errorBanner.classList.remove('visible');
+      }
+
+      function validate() {
+        var valid = true;
+        clearErrors();
+
+        if (!AIRBNB_PATTERN.test(listingUrlInput.value.trim())) {
+          listingUrlInput.classList.add('error');
+          listingUrlError.textContent = 'Please enter a valid Airbnb listing URL (airbnb.com/rooms/… or airbnb.co.uk/rooms/…)';
+          valid = false;
+        }
+
+        if (!EMAIL_PATTERN.test(emailInput.value.trim())) {
+          emailInput.classList.add('error');
+          emailError.textContent = 'Please enter a valid email address';
+          valid = false;
+        }
+
+        return valid;
+      }
+
+      function setLoading(loading) {
+        submitBtn.disabled = loading;
+        submitBtn.innerHTML = loading
+          ? '<span class="spinner"></span>Analysing…'
+          : 'Run My Analysis';
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!validate()) return;
+
+        var payload = {
+          listing_url: listingUrlInput.value.trim(),
+          email: emailInput.value.trim(),
+          name: document.getElementById('name').value.trim() || undefined,
+          listing_count: document.getElementById('listing_count').value
+            ? parseInt(document.getElementById('listing_count').value, 10)
+            : undefined
+        };
+
+        // Remove undefined keys
+        Object.keys(payload).forEach(function (k) {
+          if (payload[k] === undefined) delete payload[k];
+        });
+
+        setLoading(true);
+
+        fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error('Server returned ' + res.status);
+            formView.style.display = 'none';
+            successView.classList.add('visible');
+          })
+          .catch(function () {
+            setLoading(false);
+            errorBanner.classList.add('visible');
+          });
+      });
+
+      // Clear field errors on input
+      listingUrlInput.addEventListener('input', function () {
+        listingUrlInput.classList.remove('error');
+        listingUrlError.textContent = '';
+      });
+      emailInput.addEventListener('input', function () {
+        emailInput.classList.remove('error');
+        emailError.textContent = '';
+      });
+    })();
+  </script>
+</body>
+</html>
