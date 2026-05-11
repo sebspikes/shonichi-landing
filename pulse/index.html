@@ -124,6 +124,18 @@
       box-shadow: 0 0 0 3px rgba(248,113,113,0.12);
     }
 
+    select.field-input {
+      appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%237D838B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M3 4.5l3 3 3-3'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+    select.field-input option { background: var(--surface); color: var(--text); }
+    select.field-input.placeholder { color: var(--text-muted); opacity: 0.5; }
+
     .field-error {
       font-size: 0.8125rem;
       color: var(--red);
@@ -272,6 +284,20 @@
         </div>
 
         <div class="field-group">
+          <label class="field-label" for="name">Name</label>
+          <input
+            class="field-input"
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your name"
+            required
+            autocomplete="name"
+          >
+          <div class="field-error" id="name_error"></div>
+        </div>
+
+        <div class="field-group">
           <label class="field-label" for="email">Email</label>
           <input
             class="field-input"
@@ -286,17 +312,41 @@
         </div>
 
         <div class="field-group">
-          <label class="field-label" for="name">Name</label>
+          <label class="field-label" for="mobile">Mobile</label>
           <input
             class="field-input"
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Your name"
+            type="tel"
+            id="mobile"
+            name="mobile"
+            placeholder="+44 7700 900000"
             required
-            autocomplete="name"
+            autocomplete="tel"
+            inputmode="tel"
           >
-          <div class="field-error" id="name_error"></div>
+          <div class="field-error" id="mobile_error"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="pms">PMS</label>
+          <select
+            class="field-input placeholder"
+            id="pms"
+            name="pms"
+            required
+          >
+            <option value="" disabled selected>Select your PMS</option>
+            <option value="Hostaway">Hostaway</option>
+            <option value="Guesty">Guesty</option>
+            <option value="Hostfully">Hostfully</option>
+            <option value="Lodgify">Lodgify</option>
+            <option value="OwnerRez">OwnerRez</option>
+            <option value="Uplisting">Uplisting</option>
+            <option value="Smoobu">Smoobu</option>
+            <option value="iGMS">iGMS</option>
+            <option value="Other">Other</option>
+            <option value="None">None / Direct only</option>
+          </select>
+          <div class="field-error" id="pms_error"></div>
         </div>
 
         <div class="field-group">
@@ -349,25 +399,40 @@
       var errorBanner = document.getElementById('formErrorBanner');
 
       var listingUrlInput = document.getElementById('listing_url');
-      var emailInput = document.getElementById('email');
       var nameInput = document.getElementById('name');
+      var emailInput = document.getElementById('email');
+      var mobileInput = document.getElementById('mobile');
+      var pmsInput = document.getElementById('pms');
       var listingCountInput = document.getElementById('listing_count');
       var listingUrlError = document.getElementById('listing_url_error');
-      var emailError = document.getElementById('email_error');
       var nameError = document.getElementById('name_error');
+      var emailError = document.getElementById('email_error');
+      var mobileError = document.getElementById('mobile_error');
+      var pmsError = document.getElementById('pms_error');
       var listingCountError = document.getElementById('listing_count_error');
 
       var AIRBNB_PATTERN = /airbnb\.(com|co\.uk)\/rooms\//i;
       var EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var MOBILE_PATTERN = /^[\d\s+()-]{7,}$/;
+
+      // Keep the select looking like a placeholder until a real value is chosen
+      pmsInput.addEventListener('change', function () {
+        if (pmsInput.value) pmsInput.classList.remove('placeholder');
+        else pmsInput.classList.add('placeholder');
+      });
 
       function clearErrors() {
         listingUrlInput.classList.remove('error');
-        emailInput.classList.remove('error');
         nameInput.classList.remove('error');
+        emailInput.classList.remove('error');
+        mobileInput.classList.remove('error');
+        pmsInput.classList.remove('error');
         listingCountInput.classList.remove('error');
         listingUrlError.textContent = '';
-        emailError.textContent = '';
         nameError.textContent = '';
+        emailError.textContent = '';
+        mobileError.textContent = '';
+        pmsError.textContent = '';
         listingCountError.textContent = '';
         errorBanner.classList.remove('visible');
       }
@@ -382,15 +447,27 @@
           valid = false;
         }
 
+        if (!nameInput.value.trim()) {
+          nameInput.classList.add('error');
+          nameError.textContent = 'Please enter your name';
+          valid = false;
+        }
+
         if (!EMAIL_PATTERN.test(emailInput.value.trim())) {
           emailInput.classList.add('error');
           emailError.textContent = 'Please enter a valid email address';
           valid = false;
         }
 
-        if (!nameInput.value.trim()) {
-          nameInput.classList.add('error');
-          nameError.textContent = 'Please enter your name';
+        if (!MOBILE_PATTERN.test(mobileInput.value.trim())) {
+          mobileInput.classList.add('error');
+          mobileError.textContent = 'Please enter a valid mobile number';
+          valid = false;
+        }
+
+        if (!pmsInput.value) {
+          pmsInput.classList.add('error');
+          pmsError.textContent = 'Please select your PMS';
           valid = false;
         }
 
@@ -416,8 +493,10 @@
 
         var payload = {
           listing_url: listingUrlInput.value.trim(),
-          email: emailInput.value.trim(),
           name: nameInput.value.trim(),
+          email: emailInput.value.trim(),
+          mobile: mobileInput.value.trim(),
+          pms: pmsInput.value,
           listing_count: parseInt(listingCountInput.value, 10)
         };
 
@@ -442,11 +521,14 @@
       // Clear field errors on input
       [
         [listingUrlInput, listingUrlError],
-        [emailInput, emailError],
         [nameInput, nameError],
+        [emailInput, emailError],
+        [mobileInput, mobileError],
+        [pmsInput, pmsError],
         [listingCountInput, listingCountError]
       ].forEach(function (pair) {
-        pair[0].addEventListener('input', function () {
+        var evt = pair[0].tagName === 'SELECT' ? 'change' : 'input';
+        pair[0].addEventListener(evt, function () {
           pair[0].classList.remove('error');
           pair[1].textContent = '';
         });
